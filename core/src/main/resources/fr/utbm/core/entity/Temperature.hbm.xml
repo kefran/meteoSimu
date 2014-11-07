@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30 oct. 2014 14:26:56 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="fr.utbm.core.entity.Temperature" table="temperature" catalog="LP76">
+        <id name="tmpId" type="long">
+            <column name="TMP_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="tmpValue" type="java.lang.Float">
+            <column name="TMP_VALUE" precision="12" scale="0" />
+        </property>
+        <property name="tmpDate" type="timestamp">
+            <column name="TMP_DATE" length="19" />
+        </property>
+        <property name="sensor" type="fr.utbm.core.entity.Sensor">
+            <column name="SEN_ID" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

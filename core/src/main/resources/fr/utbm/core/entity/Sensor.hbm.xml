@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30 oct. 2014 14:26:56 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="fr.utbm.core.entity.Sensor" table="sensor" catalog="LP76">
+        <id name="senId" type="int">
+            <column name="Sen_Id" />
+            <generator class="assigned" />
+        </id>
+        <property name="senLabel" type="string">
+            <column name="Sen_Label" length="45" not-null="true" />
+        </property>
+        <property name="station" type="fr.utbm.core.entity.Station">
+            <column name="Sta_Id" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

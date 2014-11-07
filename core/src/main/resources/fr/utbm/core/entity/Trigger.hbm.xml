@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30 oct. 2014 14:26:56 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="fr.utbm.core.entity.Trigger" table="trigger"
+		catalog="LP76">
+		<id name="trgId" type="int">
+			<column name="Trg_Id" />
+			<generator class="assigned" />
+		</id>
+		<property name="trgHigh" type="float">
+			<column name="Trg_High" precision="12" scale="0" not-null="true" />
+		</property>
+		<property name="trgLow" type="float">
+			<column name="Trg_Low" precision="12" scale="0" not-null="true" />
+		</property>
+		<property name="trgEdge" type="boolean">
+			<column name="Trg_Edge" not-null="true" />
+		</property>
+		<property name="alert" type="fr.utbm.core.entity.Alert">
+			<column name="Alr_code" length="5" not-null="true" />
+		</property>
+		<property name="sensor" type="fr.utbm.core.entity.Sensor">
+			<column name="Sen_Id" not-null="true" />
+		</property>
+	</class>
+</hibernate-mapping>

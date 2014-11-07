@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30 oct. 2014 14:26:56 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="fr.utbm.core.entity.Alerthis" table="alerthis" catalog="LP76">
+        <id name="alhId" type="long">
+            <column name="ALH_ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="alhDate" type="timestamp">
+            <column name="ALH_DATE" length="19" />
+        </property>
+        <property name="alhState" type="java.lang.Integer">
+            <column name="ALH_STATE" />
+        </property>
+        <property name="trigger" type="long">
+            <column name="TRG_ID" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
