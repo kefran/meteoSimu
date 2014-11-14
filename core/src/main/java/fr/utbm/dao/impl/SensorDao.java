@@ -1,19 +1,18 @@
 package fr.utbm.dao.impl;// default package
 // Generated 31 oct. 2014 13:51:02 by Hibernate Tools 3.4.0.CR1
 
-import java.util.List;
-
+import fr.utbm.core.entity.Sensor;
+import fr.utbm.dao.HibernateDao;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import fr.utbm.core.entity.Sensor;
-import fr.utbm.dao.HibernateDao;
+import java.util.List;
 
 /**
  * Home object for domain model class Sensor.
- * 
- * @see .Sensor
+ *
  * @author Hibernate Tools
+ * @see .Sensor
  */
 public class SensorDao extends HibernateDao {
 
@@ -34,7 +33,7 @@ public class SensorDao extends HibernateDao {
 		super.delete(persistentInstance);
 	}
 
-	public Sensor findById(java.lang.String id) {
+	public Sensor findById(int id) {
 		log.debug("getting Sensor instance with id: " + id);
 		return (Sensor) super.get(Sensor.class, id);
 	}

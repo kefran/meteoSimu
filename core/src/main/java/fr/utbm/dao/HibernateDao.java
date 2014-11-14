@@ -1,12 +1,10 @@
 package fr.utbm.dao;
 
-import java.util.List;
-
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import fr.utbm.dao.DAO;
+import java.util.List;
 
 public class HibernateDao extends DAO {
 
@@ -16,7 +14,19 @@ public class HibernateDao extends DAO {
 		session = getSession();
 	}
 
+	public static long getCount(String entityName) {
+		begin();
+		Query query = session.createQuery("select count(*) from " + entityName);
+		commit();
+		return (Long) query.uniqueResult();
+	}
+
 	public Object get(Class<?> classObject, String id) {
+		begin();
+		return session.get(classObject, id);
+	}
+
+	public Object get(Class<?> classObject, int id) {
 		begin();
 		return session.get(classObject, id);
 	}
@@ -49,12 +59,5 @@ public class HibernateDao extends DAO {
 	public List<?> getAll(Class<?> entityClass) {
 		Criteria cr = session.createCriteria(entityClass);
 		return cr.list();
-	}
-
-	public static long getCount(String entityName) {
-		begin();
-		Query query = session.createQuery("select count(*) from " + entityName);
-		commit();
-		return (Long) query.uniqueResult();
 	}
 }

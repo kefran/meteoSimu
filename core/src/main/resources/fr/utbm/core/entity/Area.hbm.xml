@@ -1,18 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 30 oct. 2014 14:26:56 by Hibernate Tools 3.4.0.CR1 -->
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="fr.utbm.core.entity.Area" table="area" catalog="LP76">
-		<id name="areId" type="int">
-			<column name="Are_Id" />
+	<class name="fr.utbm.core.entity.Area" table="Area" catalog="lp76">
+		<id name="id" type="int" column="Are_Id">
 			<generator class="assigned" />
 		</id>
-		<property name="areLabel" type="string">
-			<column name="Are_Label" length="45" not-null="true" />
-		</property>
-		<property name="areRoad" type="string">
-			<column name="Are_Road" length="45" />
-		</property>
+		<property name="label" type="string" column="Are_Label" />
+		<property name="road" type="string" column="Are_Road" />
 	</class>
 </hibernate-mapping>

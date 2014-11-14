@@ -1,20 +1,20 @@
 package fr.utbm.dao.impl;// default package
 // Generated 31 oct. 2014 13:51:02 by Hibernate Tools 3.4.0.CR1
 
-import java.util.List;
-
+import fr.utbm.core.entity.Alert;
+import fr.utbm.dao.HibernateDao;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import fr.utbm.core.entity.Alert;
-import fr.utbm.dao.HibernateDao;
+import java.util.List;
 
 /**
  * Home object for domain model class Alert.
- * @see .Alert
+ *
  * @author Hibernate Tools
+ * @see .Alert
  */
-public class AlertDao extends HibernateDao{
+public class AlertDao extends HibernateDao {
 
 	private static final Log log = LogFactory.getLog(AlertDao.class);
 
@@ -37,7 +37,7 @@ public class AlertDao extends HibernateDao{
 		log.debug("getting Alert instance with id: " + id);
 		return (Alert) super.get(Alert.class, id);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<Alert> getAll() {
 		log.debug("getting all Alert instances");

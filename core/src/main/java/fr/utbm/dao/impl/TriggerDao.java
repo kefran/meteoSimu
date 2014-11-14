@@ -1,18 +1,18 @@
 package fr.utbm.dao.impl;// default package
 // Generated 31 oct. 2014 13:51:02 by Hibernate Tools 3.4.0.CR1
 
-import java.util.List;
-
+import fr.utbm.core.entity.Trigger;
+import fr.utbm.dao.HibernateDao;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import fr.utbm.core.entity.Trigger;
-import fr.utbm.dao.HibernateDao;
+import java.util.List;
 
 /**
  * Home object for domain model class Trigger.
- * @see .Trigger
+ *
  * @author Hibernate Tools
+ * @see .Trigger
  */
 public class TriggerDao extends HibernateDao {
 
@@ -33,7 +33,7 @@ public class TriggerDao extends HibernateDao {
 		super.delete(persistentInstance);
 	}
 
-	public Trigger findById(java.lang.String id) {
+	public Trigger findById(int id) {
 		log.debug("getting Trigger instance with id: " + id);
 		return (Trigger) super.get(Trigger.class, id);
 	}

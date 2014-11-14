@@ -1,19 +1,18 @@
 package fr.utbm.dao.impl;// default package
 // Generated 31 oct. 2014 13:51:02 by Hibernate Tools 3.4.0.CR1
 
-import java.util.List;
-
+import fr.utbm.core.entity.Station;
+import fr.utbm.dao.HibernateDao;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import fr.utbm.core.entity.Station;
-import fr.utbm.dao.HibernateDao;
+import java.util.List;
 
 /**
  * Home object for domain model class Station.
- * 
- * @see .Station
+ *
  * @author Hibernate Tools
+ * @see .Station
  */
 public class StationDao extends HibernateDao {
 
@@ -34,7 +33,7 @@ public class StationDao extends HibernateDao {
 		super.delete(persistentInstance);
 	}
 
-	public Station findById(java.lang.String id) {
+	public Station findById(int id) {
 		log.debug("getting Station instance with id: " + id);
 		return (Station) super.get(Station.class, id);
 	}

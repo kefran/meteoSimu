@@ -1,15 +1,14 @@
 package fr.utbm.dao;
 
+import fr.utbm.core.entity.Alert;
+import fr.utbm.core.tools.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import fr.utbm.core.entity.Alert;
-import fr.utbm.core.tools.HibernateUtil;
-
 /**
  * Provide DAO with basic session operations
- * 
+ *
  * @author Kevin Le Roy
  * @author Lionel Cabasson
  */
@@ -24,18 +23,18 @@ public abstract class DAO {
 	 * Build a new DAO
 	 */
 	protected DAO() {
-		
+
 		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
 			public void run() {
 				close();
 			}
 		}));
-		
+
 	}
 
 	/**
 	 * Return the DAO session
-	 * 
+	 *
 	 * @return session object
 	 */
 	@SuppressWarnings("unchecked")
@@ -88,17 +87,20 @@ public abstract class DAO {
 		getSession().close();
 		DAO.session.set(null);
 	}
-	
-	protected abstract void persist(Object object);
-	public abstract Object get(Class<?> classObject, String id);
-	protected abstract void delete(Object object);
-	protected abstract void update(Object object);
-	
+
 	public static void main(String[] args) {
 		Alert alert = new Alert();
-		alert.setAlrCode("TEST");
-		alert.setAlrLabel("TEST");
-		alert.setAlrDescription("TEST");
+		alert.setCode("TEST");
+		alert.setLabel("TEST");
+		alert.setDescription("TEST");
 		DaoFactory.getAlertDao().persist(alert);
 	}
+
+	protected abstract void persist(Object object);
+
+	public abstract Object get(Class<?> classObject, String id);
+
+	protected abstract void delete(Object object);
+
+	protected abstract void update(Object object);
 }

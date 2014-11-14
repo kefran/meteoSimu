@@ -1,24 +1,14 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 30 oct. 2014 14:26:56 by Hibernate Tools 3.4.0.CR1 -->
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="fr.utbm.core.entity.Station" table="station" catalog="LP76">
-        <id name="staId" type="int">
-            <column name="Sta_Id" />
-            <generator class="assigned" />
-        </id>
-        <property name="staLabel" type="string">
-            <column name="Sta_Label" length="45" not-null="true" />
-        </property>
-        <property name="area" type="fr.utbm.core.entity.Area">
-            <column name="Are_Id" not-null="true" />
-        </property>
-        <property name="staLastCom" type="timestamp">
-            <column name="Sta_LastCom" length="19" />
-        </property>
-        <property name="staValid" type="boolean">
-            <column name="Sta_Valid" not-null="true" />
-        </property>
-    </class>
+	<class name="fr.utbm.core.entity.Station" table="Station" catalog="lp76">
+		<id name="id" type="int" column="Sta_Id">
+			<generator class="assigned" />
+		</id>
+		<property name="label" type="string" column="Sta_Label" />
+		<many-to-one name="area" column="Are_Id" class="fr.utbm.core.entity.Area" />
+		<property name="lastCommunicationDate" type="timestamp" column="Sta_LastCom" />
+		<property name="valid" type="boolean" column="Sta_Valid" />
+	</class>
 </hibernate-mapping>
