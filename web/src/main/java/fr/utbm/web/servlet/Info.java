@@ -39,7 +39,7 @@ public class Info extends HttpServlet {
             out.println("<title>Servlet Info</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Info at " + request.getContextPath() + " pouette</h1>");
+            out.println("<h1>Servlet Info at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         } finally {
