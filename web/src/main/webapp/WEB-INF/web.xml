@@ -6,7 +6,16 @@
     <welcome-file-list>
         <welcome-file>/index.jsp</welcome-file>
     </welcome-file-list>
-    <!-- Session -->
+	
+    <!-- Session --> 
+    <servlet>
+    	<servlet-name>testjsp</servlet-name>
+    	<jsp-file>/tempUni.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+	    <servlet-name>testjsp</servlet-name>
+	    <url-pattern>/tempunijsp</url-pattern>   
+	</servlet-mapping>
     <servlet>
         <servlet-name>Info</servlet-name>
         <servlet-class>fr.utbm.web.servlet.Info</servlet-class>
