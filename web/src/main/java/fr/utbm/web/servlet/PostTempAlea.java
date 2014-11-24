@@ -11,14 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.jfree.util.Log;
 
-public class tempUni extends HttpServlet {
+public class PostTempAlea extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		// super.doGet(arg0, arg1);
-		displayLayout(request, response);
+		// TODO ENVOYER CHIER L'UTILISATEUR CAR IL N'A PAS A GET CETTE PAGE!
 
 	}
 
@@ -39,38 +37,14 @@ public class tempUni extends HttpServlet {
 		out.println("<!DOCTYPE html>");
 		out.println("<html>");
 		out.println("<head>");
-		out.println("<title>Servlet Température unitaire</title>");
 		out.println("</head>");
 		out.println("<body>");
-		out.println("<h1>Données récupérées</h1>");
 		out.println(zone + " " + station + " " + sonde + " " + temperature + " " + dateTemp + " " + timeTemp);
 		out.println("</body>");
 		out.println("</html>");
 		}
 		finally
 		{
-			out.close();
-		}
-	}
-
-	private void displayLayout(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
-		try {
-			/* TODO output your page here. You may use following sample code. */
-			response.setContentType("text/html;charset=UTF-8");
-
-			out.println("<!DOCTYPE html>");
-			out.println("<html>");
-			out.println("<head>");
-			out.println("<title>Servlet Température unitaire</title>");
-			out.println("</head>");
-			out.println("<body>");
-			out.println("<h1>Servlet température at "
-					+ request.getContextPath() + "</h1>");
-			out.println("</body>");
-			out.println("</html>");
-		} finally {
 			out.close();
 		}
 	}

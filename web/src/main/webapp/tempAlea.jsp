@@ -12,14 +12,14 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Simulation Température</title>
+<title>Simulation Température Aléatoir</title>
 </head>
 <body>
-	<a href="GetTempAlea">Simulation aléatoire</a>
+	<a href="GetTempUni">Simulation unitaire</a>
 	<br>
 	<%=(String)request.getAttribute("todo")%>
-	<h1>Simulation de température unitaire</h1>
-	<form method="POST" action="PostTempUni">
+	<h1>Simulation de température aleatoire</h1>
+	<form method="POST" action="PostTempAlea">
 		<p>
 		<h4>Choix de la sonde</h4>
 		<select name="zone" size="1">
