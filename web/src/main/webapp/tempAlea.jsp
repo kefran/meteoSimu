@@ -2,14 +2,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/tstrap/3.3.1/css/bootstrap-theme.min.css">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Simulation Température Aléatoir</title>
@@ -30,16 +22,25 @@
 			<option>Toto</option>
 		</select>
 		</p>
-		<p>
-			<h4>Données à simuler</h4>
-			<span> 
-				Température 
-				<input type="text" name="temperature"/>
-			 	<input type="date"	name="date">
-				<input type="time" name="time">
-			</span>
+		<h4>Données à simuler</h4>
+		<p> 
+			Température minimale 
+			<input type="text" name="temperatureMin"/>
 		</p>
-		<input type="Submit" value="Valider"/>
+		<p>
+			Température maximale
+			<input type="text" name="temperatureMax">	 
+		</p>
+		<p>
+		Intervale 
+		<select name="interval" size="1">
+			<option>Seconde</option>
+			<option>Minute</option>
+			<option>Heure</option>
+		</select>
+		</p>
+		<input type="button" value="Start"/>
+		<input type="button" value="stop"/>
 	</form>
 </body>
 </html>

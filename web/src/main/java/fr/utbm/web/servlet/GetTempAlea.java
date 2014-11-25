@@ -18,6 +18,7 @@ public class GetTempAlea extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
+		//GET DATA ET PASSER EN SET ATTRIBUTE?
 	    request.setAttribute("todo", "10");
 	    request.getRequestDispatcher("/tempAlea.jsp").forward(request, response);
 	}
