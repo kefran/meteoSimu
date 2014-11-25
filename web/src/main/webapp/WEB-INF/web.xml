@@ -30,3 +30,73 @@
 			</session-timeout>
     </session-config>
 </web-app>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  <display-name>Projet LP76</display-name>
+  <welcome-file-list>
+    <welcome-file>/index.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <!-- SERVLET INFO -->
+  <servlet>
+    <servlet-name>Info</servlet-name>
+    <servlet-class>fr.utbm.web.servlet.Info</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Info</servlet-name>
+    <url-pattern>/Info</url-pattern>
+  </servlet-mapping>
+  	
+  <!-- SERVLET TEST JSP -->
+  <servlet>
+    <servlet-name>testjsp</servlet-name>
+    <jsp-file>/tempUni.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>testjsp</servlet-name>
+    <url-pattern>/tempunijsp</url-pattern>
+  </servlet-mapping>
+  
+  <!-- SERVLET GET TEMP UNI -->
+  <servlet>
+  <servlet-name>GetTempUni</servlet-name>
+    <servlet-class>fr.utbm.web.servlet.GetTempUni</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetTempUni</servlet-name>
+    <url-pattern>/GetTempUni</url-pattern>
+  </servlet-mapping>
+  
+   <!-- SERVLET GET TEMP ALEA -->
+  <servlet>
+  <servlet-name>GetTempAlea</servlet-name>
+    <servlet-class>fr.utbm.web.servlet.GetTempAlea</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetTempAlea</servlet-name>
+    <url-pattern>/GetTempAlea</url-pattern>
+  </servlet-mapping>
+  
+   <!-- SERVLET POST TEMP UNI -->
+  <servlet>
+  <servlet-name>PostTempUni</servlet-name>
+    <servlet-class>fr.utbm.web.servlet.PostTempUni</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PostTempUni</servlet-name>
+    <url-pattern>/PostTempUni</url-pattern>
+  </servlet-mapping>
+  
+   <!-- SERVLET POST TEMP ALEA -->
+  <servlet>
+  <servlet-name>PostTempAlea</servlet-name>
+    <servlet-class>fr.utbm.web.servlet.PostTempAlea</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PostTempAlea</servlet-name>
+    <url-pattern>/PostTempAlea</url-pattern>
+  </servlet-mapping>
+  
+  <session-config>
+    <session-timeout>600</session-timeout>
+  </session-config>
+</web-app>
