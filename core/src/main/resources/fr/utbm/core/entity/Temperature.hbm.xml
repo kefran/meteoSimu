@@ -4,7 +4,7 @@
 <hibernate-mapping>
 	<class name="fr.utbm.core.entity.Temperature" table="Temperature" catalog="lp76">
 		<id name="id" type="int" column="TMP_ID">
-			<generator class="assigned" />
+			<generator class="increment" />
 		</id>
 		<property name="value" type="float" column="TMP_VALUE" />
 		<property name="date" type="timestamp" column="TMP_DATE" />

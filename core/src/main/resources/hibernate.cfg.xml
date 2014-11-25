@@ -20,8 +20,8 @@
 		<!-- Echo all executed SQL to stdout -->
 		<property name="show_sql">true</property>
 		<property name="format_sql">true</property>
-		
-		<property name="hbm2ddl.auto">create</property>
+		<!-- Drop and re-create the database schema on startup -->
+		<property name="hbm2ddl.auto">validate</property>
 		<!-- Object Mapping files -->
 
 		<mapping resource="fr/utbm/core/entity/Area.hbm.xml"/>

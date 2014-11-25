@@ -2,7 +2,11 @@ package fr.utbm.core.entity;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 public class Temperature {
+
 	private int id;
 	private Sensor sensor;
 	private float value;

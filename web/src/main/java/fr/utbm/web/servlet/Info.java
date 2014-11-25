@@ -7,10 +7,44 @@ package fr.utbm.web.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.TimeZone;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.ObjectWriter;
+import org.codehaus.jackson.map.SerializationConfig;
+
+import fr.utbm.core.entity.Sensor;
+import fr.utbm.core.entity.Station;
+import fr.utbm.core.entity.Temperature;
+import fr.utbm.core.tools.TemperatureDTO;
+import fr.utbm.core.tools.TempsLogger;
+import fr.utbm.dao.DaoFactory;
+import fr.utbm.dao.impl.SensorDao;
+import fr.utbm.dao.impl.StationDao;
 
 /**
  *
@@ -31,6 +65,39 @@ public class Info extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+       
+    TimeZone tz = TimeZone.getTimeZone("UTC");
+    SimpleDateFormat sdf =  new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");    
+    sdf.setTimeZone(tz);
+    
+    ObjectMapper m = new ObjectMapper();
+    ObjectWriter w = m.writer();
+    SerializationConfig cfg = m.getSerializationConfig();
+    cfg.setDateFormat(sdf);
+    m.setSerializationConfig(cfg);
+    
+    Station st = new Station();
+    Sensor se= new Sensor(7,st,"Thermo 1 ");
+    try {
+		Temperature t = new Temperature(se,(float)1.0,new Date());
+		TemperatureDTO tDto = new TemperatureDTO(t);
+		TempsLogger tl = new TempsLogger();  
+	    tl.logTemperature(t);
+		
+		  if(w.canSerialize(TemperatureDTO.class))
+			{
+			   out.write(m.writeValueAsString(tDto));
+			};
+		 
+    } catch (Exception e1) {
+		e1.printStackTrace();
+	}
+  
+      SensorDao sdao = DaoFactory.getSensorDao();
+      List<Sensor> lsensor = sdao.getAll();
+      for(Sensor e : lsensor)
+    	  out.println(e.getLabel());
+        
         try {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -39,7 +106,7 @@ public class Info extends HttpServlet {
             out.println("<title>Servlet Info</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Info at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet Info at " + request.getContextPath() + " moi c'est jojo</h1>");
             out.println("</body>");
             out.println("</html>");
         } finally {
