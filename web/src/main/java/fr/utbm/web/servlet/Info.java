@@ -19,20 +19,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.ObjectWriter;
 import org.codehaus.jackson.map.SerializationConfig;
@@ -40,7 +26,8 @@ import org.codehaus.jackson.map.SerializationConfig;
 import fr.utbm.core.entity.Sensor;
 import fr.utbm.core.entity.Station;
 import fr.utbm.core.entity.Temperature;
-import fr.utbm.core.tools.TemperatureDTO;
+import fr.utbm.core.tools.TemperatureDto;
+import fr.utbm.core.tools.TempsGenerator;
 import fr.utbm.core.tools.TempsLogger;
 import fr.utbm.dao.DaoFactory;
 import fr.utbm.dao.impl.SensorDao;
@@ -66,29 +53,17 @@ public class Info extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
        
-    TimeZone tz = TimeZone.getTimeZone("UTC");
-    SimpleDateFormat sdf =  new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");    
-    sdf.setTimeZone(tz);
-    
-    ObjectMapper m = new ObjectMapper();
-    ObjectWriter w = m.writer();
-    SerializationConfig cfg = m.getSerializationConfig();
-    cfg.setDateFormat(sdf);
-    m.setSerializationConfig(cfg);
-    
+
     Station st = new Station();
     Sensor se= new Sensor(7,st,"Thermo 1 ");
     try {
-		Temperature t = new Temperature(se,(float)1.0,new Date());
-		TemperatureDTO tDto = new TemperatureDTO(t);
+    	TempsGenerator tg = new TempsGenerator();
+    	out.println(tg.generateTemp());
+		Temperature t = new Temperature(se,tg.generateTemp(),new Date());
+		TemperatureDto tDto = new TemperatureDto(t);
 		TempsLogger tl = new TempsLogger();  
 	    tl.logTemperature(t);
 		
-		  if(w.canSerialize(TemperatureDTO.class))
-			{
-			   out.write(m.writeValueAsString(tDto));
-			};
-		 
     } catch (Exception e1) {
 		e1.printStackTrace();
 	}
