@@ -71,7 +71,7 @@ public class Info extends HttpServlet {
       SensorDao sdao = DaoFactory.getSensorDao();
       List<Sensor> lsensor = sdao.getAll();
       for(Sensor e : lsensor)
-    	  out.println(e.getLabel());
+    	  out.println(e.getStation().getId());
         
         try {
             /* TODO output your page here. You may use following sample code. */

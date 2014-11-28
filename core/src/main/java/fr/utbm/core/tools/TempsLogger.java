@@ -55,11 +55,14 @@ public class TempsLogger {
 			StringRequestEntity entity = new StringRequestEntity(
 					mapper.writeValueAsString(tdto), "application/json",
 					"UTF-8");
-			System.out.println("Data sended : "+mapper.writeValueAsString(tdto));
+			
+			System.out.println("Sended Data : "+mapper.writeValueAsString(tdto));
+			
 			hMeth.setRequestEntity(entity);
 
 			hClient.executeMethod(hMeth);
-		InputStream response = hMeth.getResponseBodyAsStream();
+			
+			InputStream response = hMeth.getResponseBodyAsStream();
 		
 			tdto = mapper.readValue(response, TemperatureDto.class);
 			
