@@ -2,6 +2,7 @@ package fr.utbm.core.tools;
 
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.TimeZone;
 
 import org.apache.commons.httpclient.Header;
@@ -35,7 +36,7 @@ public class TempsLogger {
 	public TempsLogger() {
 		hClient = new HttpClient();
 		hMeth = new PostMethod(
-				"http://jojo.local:8080/concentrator/collectData"); // TODO
+				"http://localhost:8080/concentrator/collectData"); // TODO
 
 
 		mapper = new ObjectMapper();
@@ -45,9 +46,9 @@ public class TempsLogger {
 
 	}
 
-	public boolean logTemperature(Temperature t) {
+	public boolean logTemperature(Integer sensorId, Float temperature, Date date) {
 
-		TemperatureDto tdto = new TemperatureDto(t);
+		TemperatureDto tdto = new TemperatureDto(sensorId,temperature,date);
 
 		try {
 

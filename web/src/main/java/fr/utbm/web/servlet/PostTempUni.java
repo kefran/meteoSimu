@@ -3,6 +3,8 @@ package fr.utbm.web.servlet;
 import java.io.Console;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.jfree.util.Log;
+
+import fr.utbm.core.entity.Temperature;
+import fr.utbm.core.tools.TempsLogger;
 
 public class PostTempUni extends HttpServlet {
 
@@ -24,22 +29,42 @@ public class PostTempUni extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String zone = request.getParameter("zone");
-		String station = request.getParameter("station");
-		String sonde = request.getParameter("sonde");
-		String temperature = request.getParameter("temperature");
-		String dateTemp = request.getParameter("date");
-		String timeTemp = request.getParameter("time");
+		Integer sensor = Integer.parseInt(request.getParameter("sonde"));
+		Float temperature = Float.parseFloat(request.getParameter("temperature"));
+		String _dateTemp = request.getParameter("date");
+		String _timeTemp = request.getParameter("time");
+			
+		System.out.println(_dateTemp);
+		System.out.println(_timeTemp);
+	
+		Date date = new Date();
+		// yyyy-MM-dd'T'HH:mm:ssZ
+		// use simple date format
+		try{
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		date = sdf.parse(_dateTemp + " " + _timeTemp);
+		TempsLogger tl = new TempsLogger();
+		
+		sdf.applyPattern("yyyy-MM-dd'T'HH:mm:ssZ");
+		System.out.println(sdf.format(date));
+		tl.logTemperature(sensor, temperature, date);
+		}
+		catch(Exception e){e.printStackTrace();
+		
+		
+		}
 		PrintWriter out = response.getWriter();
 		try{
 		response.setContentType("text/html;charset=UTF-8");
+		
 
 		out.println("<!DOCTYPE html>");
 		out.println("<html>");
 		out.println("<head>");
+		//out.println("<meta http-equiv='refresh' content='2; url=http://localhost:8080/web/GetTempUni' />");
 		out.println("</head>");
 		out.println("<body>");
-		out.println(zone + " " + station + " " + sonde + " " + temperature + " " + dateTemp + " " + timeTemp);
+		out.println("Les données ont bien été envoyées dans la base." );
 		out.println("</body>");
 		out.println("</html>");
 		}

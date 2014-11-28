@@ -9,7 +9,6 @@
 <body>
 	<a href="GetTempUni">Simulation unitaire</a>
 	<br>
-	<%=(String)request.getAttribute("todo")%>
 	<h1>Simulation de température aleatoire</h1>
 	<form method="POST" action="PostTempAlea">
 		<p>
