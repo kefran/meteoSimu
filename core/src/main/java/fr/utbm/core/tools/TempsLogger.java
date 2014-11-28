@@ -23,21 +23,26 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize.Inclusion;
 import fr.utbm.core.entity.Temperature;
 
 /*
- *  send the temperature to the WebService
+ *  send the temperature to the concentrator
  */
 public class TempsLogger {
 
 	private HttpClient hClient;
 	private PostMethod hMeth;
+	
+	private String url;
+	
 	private TimeZone tz;
 	private ObjectMapper mapper;
 	private SerializationConfig cfg;
 
 	public TempsLogger() {
+		
+		url =new String("http://jojo.local:8080/concentrator/collectData");//default concentrator
+		
 		hClient = new HttpClient();
-		hMeth = new PostMethod(
-				"http://localhost:8080/concentrator/collectData"); // TODO
 
+		hMeth = new PostMethod(url); 
 
 		mapper = new ObjectMapper();
 		cfg = mapper.getSerializationConfig();
@@ -46,6 +51,7 @@ public class TempsLogger {
 
 	}
 
+	//
 	public boolean logTemperature(Integer sensorId, Float temperature, Date date) {
 
 		TemperatureDto tdto = new TemperatureDto(sensorId,temperature,date);
@@ -74,6 +80,14 @@ public class TempsLogger {
 			return false;
 		}
 		return true;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 }
