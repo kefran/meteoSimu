@@ -16,7 +16,7 @@ public class PostTempAlea extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO ENVOYER CHIER L'UTILISATEUR CAR IL N'A PAS A GET CETTE PAGE!
+	
 
 	}
 
