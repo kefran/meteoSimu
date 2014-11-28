@@ -23,10 +23,8 @@ public class GetTempUni extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
-		//GET DATA ET PASSER EN SETATTRIBUTE? 
 		
 		SensorDao mySensorDao = DaoFactory.getSensorDao();
-		
 		List<Sensor> myListSensor = mySensorDao.getAll();
 		
 

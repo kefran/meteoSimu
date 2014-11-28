@@ -3,6 +3,8 @@ package fr.utbm.web.servlet;
 import java.io.Console;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.jfree.util.Log;
+
+import fr.utbm.core.tools.TempsLogger;
 
 public class PostTempAlea extends HttpServlet {
 
@@ -24,24 +28,25 @@ public class PostTempAlea extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String zone = request.getParameter("zone");
-		String station = request.getParameter("station");
-		String sonde = request.getParameter("sonde");
-		String temperature = request.getParameter("temperature");
-		String dateTemp = request.getParameter("date");
-		String timeTemp = request.getParameter("time");
+
+		Integer sensor = Integer.parseInt(request.getParameter("sonde"));
+		Float temperature = Float.parseFloat(request.getParameter("temperature"));
+
+		Date date = new Date(); 
+		try{
+			System.out.println(date);
+			TempsLogger tl = new TempsLogger();
+			tl.logTemperature(sensor, temperature, date);
+			}
+			catch(Exception e){e.printStackTrace();
+			
+			
+			}
 		PrintWriter out = response.getWriter();
 		try{
 		response.setContentType("text/html;charset=UTF-8");
 
-		out.println("<!DOCTYPE html>");
-		out.println("<html>");
-		out.println("<head>");
-		out.println("</head>");
-		out.println("<body>");
-		out.println(zone + " " + station + " " + sonde + " " + temperature + " " + dateTemp + " " + timeTemp);
-		out.println("</body>");
-		out.println("</html>");
+		
 		}
 		finally
 		{

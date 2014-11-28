@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,12 +14,16 @@
 	<form method="POST" action="PostTempAlea">
 		<p>
 			<h4>Choix de la sonde</h4>
-		<select id="zone" name="zone" size="1">
-			<option>Toto</option>
-		</select> <select id="station" name="station" size="1">
-			<option>Toto</option>
-		</select> <select id="sonde" name="sonde" size="1">
-			<option>Toto</option>
+		<select id="sonde" name="sonde" size="1">
+		<%@ page import="fr.utbm.core.entity.Sensor, java.util.List" %>
+			<%
+			 List<Sensor>  mySensorList = (List<Sensor>)request.getAttribute("sensorList");
+			 for (Sensor e : mySensorList) {
+			 	out.println("<Option Value='" + e.getId() + "'> "+
+				 e.getStation().getArea().getLabel() + " > " + e.getStation().getLabel() + " > " + e.getLabel()
+				 +"</Option>");
+				}	
+			%>
 		</select>
 		</p>
 		<h4>Données à simuler</h4>
@@ -63,14 +65,12 @@
 
 	function generate() {
 		var today = new Date();
-		var date = today.toISOString();
 		var tempMax = parseFloat(document.getElementById("temperatureMax").value);
 		var tempMin = parseFloat(document.getElementById("temperatureMin").value);
 		var temperature = ((Math.random() * tempMax) + tempMin).toFixed(1);
 		$.post("http://localhost:8080/web/PostTempAlea", {
 			sonde : sonde,
 			temperature : temperature,
-			date : date
 		});
 	}
 </script>

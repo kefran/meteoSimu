@@ -45,8 +45,6 @@ public class PostTempUni extends HttpServlet {
 		date = sdf.parse(_dateTemp + " " + _timeTemp);
 		TempsLogger tl = new TempsLogger();
 		
-		sdf.applyPattern("yyyy-MM-dd'T'HH:mm:ssZ");
-		System.out.println(sdf.format(date));
 		tl.logTemperature(sensor, temperature, date);
 		}
 		catch(Exception e){e.printStackTrace();
