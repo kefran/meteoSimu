@@ -38,7 +38,7 @@ public class TempsLogger {
 
 	public TempsLogger() {
 		
-		url =new String("http://jojo.local:8080/concentrator/collectData");//default concentrator
+		url =new String("http://locahost:8080/concentrator/collectData");//default concentrator
 		
 		hClient = new HttpClient();
 

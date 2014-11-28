@@ -32,20 +32,14 @@ public class PostTempUni extends HttpServlet {
 		Integer sensor = Integer.parseInt(request.getParameter("sonde"));
 		Float temperature = Float.parseFloat(request.getParameter("temperature"));
 		String _dateTemp = request.getParameter("date");
-		String _timeTemp = request.getParameter("time");
-			
-		System.out.println(_dateTemp);
-		System.out.println(_timeTemp);
+		Date date;
 	
-		Date date = new Date();
-		// yyyy-MM-dd'T'HH:mm:ssZ
-		// use simple date format
 		try{
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-		date = sdf.parse(_dateTemp + " " + _timeTemp);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
+		date = sdf.parse(_dateTemp);
 		TempsLogger tl = new TempsLogger();
-		
-		tl.logTemperature(sensor, temperature, date);
+		System.out.println(date);
+		//tl.logTemperature(sensor, temperature, date);
 		}
 		catch(Exception e){e.printStackTrace();
 		

@@ -34,9 +34,8 @@ public class PostTempAlea extends HttpServlet {
 
 		Date date = new Date(); 
 		try{
-			System.out.println(date);
 			TempsLogger tl = new TempsLogger();
-			tl.logTemperature(sensor, temperature, date);
+			//tl.logTemperature(sensor, temperature, date);
 			}
 			catch(Exception e){e.printStackTrace();
 			
@@ -45,7 +44,7 @@ public class PostTempAlea extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		try{
 		response.setContentType("text/html;charset=UTF-8");
-
+			System.out.println(date +  " temp : " + temperature);
 		
 		}
 		finally
