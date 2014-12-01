@@ -80,9 +80,11 @@
 		
 		
 	</form>
-	<p id="nbGenerated"></p>
-	<table id="generatedTemp">
-	<thead><th>date</th><th>Temperature</th><th>Sonde</th></thead>
+	<div>
+		Nombre de valeurs générées : <span class="label label-info" id="nbGenerated"></span>
+	</div>
+	<table class="table table-striped" id="generatedTemp">
+	<thead><th>Date </th><th>Temperature</th><th>Sonde</th></thead>
 	
 	</table>
 <script type="text/javascript">
