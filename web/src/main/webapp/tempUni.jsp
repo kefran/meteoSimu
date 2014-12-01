@@ -15,36 +15,57 @@
 <title>Simulation Température</title>
 </head>
 <body>
-	<a href="GetTempAlea">Simulation aléatoire</a>
-	<br>
+	<nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+      	<div class="navbar-header">
+        	<a class="navbar-brand" href="#">Simulateur</a>
+     	</div>
+        <div id="navbar" class="navbar-collapse collapse">
+        	<ul class="nav navbar-nav">
+            	<li class="active"><a href="GetTempUni">Simulation unitaire</a></li>
+             	<li><a href="GetTempAlea">Simulation aléatoire</a></li>
+           	</ul>
+		</div>
+      </div>
+    </nav>
+
+		<div class="container-fluid">
+	  		<div class="row">
+		  		<div class="col-md-8 col-md-offset-2">
+	  			<h1>Simulation de température unitaire</h1>
+				<form  class="form-horizontal" method="POST" action="PostTempUni">
+					<div class="well">
+						<div class="form-group">
+							<label for="sonde" class="col-sm-3" control-label">Choix de la sonde</label>
+							<select class="col-sm-8" id="sonde" name="sonde" size="1">
+								<%@ page import="fr.utbm.core.entity.Sensor, java.util.List" %>
+								<%
+								 List<Sensor>  mySensorList = (List<Sensor>)request.getAttribute("sensorList");
+								 for (Sensor e : mySensorList) {
+								 	out.println("<Option Value='" + e.getId() + "'> "+
+									 e.getStation().getArea().getLabel() + " > " + e.getStation().getLabel() + " > " + e.getLabel()
+									 +"</Option>");
+									}	
+								%>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="temperature" class="col-sm-3" control-label">Température</label>
+							<input class="col-sm-1" id="temperature" type="text" name="temperature" value="1" onkeypress="return isNumberKey(event)"/>
+						</div>
+						<div class="form-group">
+							<label for="date" class="col-sm-3" control-label">Date et heure</label>
+							<input class="col-sm-3"type="datetime-local" id="date" name="date"/>
+						</div>
+					</div>
+					<input type="Submit" class="btn btn-success col-md-1 col-md-offset-11" value="Valider"/>
+				</form>
+	  		</div>
+
+ 		</div>
+	</div>
 	
-	<h1>Simulation de température unitaire</h1>
-	<form method="POST" action="PostTempUni">
-		<p>
-		<h4>Choix de la sonde</h4>
-		
-		<select name="sonde" size="1">
-		<%@ page import="fr.utbm.core.entity.Sensor, java.util.List" %>
-			<%
-			 List<Sensor>  mySensorList = (List<Sensor>)request.getAttribute("sensorList");
-			 for (Sensor e : mySensorList) {
-			 	out.println("<Option Value='" + e.getId() + "'> "+
-				 e.getStation().getArea().getLabel() + " > " + e.getStation().getLabel() + " > " + e.getLabel()
-				 +"</Option>");
-				}	
-			%>
-		</select>
-		</p>
-		<p>
-			<h4>Données à simuler</h4>
-			<span> 
-				Température 
-				<input type="text" name="temperature" onkeypress="return isNumberKey(event)"/>
-			 	<input type="datetime-local"	name="date">
-			</span>
-		</p>
-		<input type="Submit" value="Valider"/>
-	</form>
+	
 </body>
 <script>
 function isNumberKey(evt)
