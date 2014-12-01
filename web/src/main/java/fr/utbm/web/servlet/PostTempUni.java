@@ -31,15 +31,16 @@ public class PostTempUni extends HttpServlet {
 		// TODO Auto-generated method stub
 		Integer sensor = Integer.parseInt(request.getParameter("sonde"));
 		Float temperature = Float.parseFloat(request.getParameter("temperature"));
-		String _dateTemp = request.getParameter("date");
+		String _dateTemp = request.getParameter("dateTime");
 		Date date;
 	
 		try{
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
+		System.out.println(_dateTemp);
 		date = sdf.parse(_dateTemp);
 		TempsLogger tl = new TempsLogger();
 		System.out.println(date);
-		//tl.logTemperature(sensor, temperature, date);
+		tl.logTemperature(sensor, temperature, date);
 		}
 		catch(Exception e){e.printStackTrace();
 		
@@ -53,7 +54,6 @@ public class PostTempUni extends HttpServlet {
 		out.println("<!DOCTYPE html>");
 		out.println("<html>");
 		out.println("<head>");
-		//out.println("<meta http-equiv='refresh' content='2; url=http://localhost:8080/web/GetTempUni' />");
 		out.println("</head>");
 		out.println("<body>");
 		out.println("Les données ont bien été envoyées dans la base." );
