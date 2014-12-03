@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+		<script src="js/jquery-1.11.1.min.js"></script>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Simulation Température</title>
 		<style>
@@ -28,21 +28,21 @@
 	      </div>
 	    </nav>
 		<div class="container-fluid">
-		  		<div class="row">
-			  		<div class="col-md-8 col-md-offset-2">
+	  		<div class="row">
+		  		<div class="col-md-8 col-md-offset-2">
 		  			<h1>Simulation de température unitaire</h1>
-					<form  class="form-horizontal" >
+					<form class="form-horizontal" >
 						<div class="well">
 							<div class="form-group">
 								<label for="sonde" class="col-sm-3" control-label">Choix de la sonde</label>
 								<select class="col-sm-8" id="sonde" name="sonde" size="1">
 									<%@ page import="fr.utbm.core.entity.Sensor, java.util.List" %>
 									<%
-									 List<Sensor>  mySensorList = (List<Sensor>)request.getAttribute("sensorList");
-									 for (Sensor e : mySensorList) {
-									 	out.println("<Option Value='" + e.getId() + "'> "+
-										 e.getStation().getArea().getLabel() + " > " + e.getStation().getLabel() + " > " + e.getLabel()
-										 +"</Option>");
+										List<Sensor>  mySensorList = (List<Sensor>)request.getAttribute("sensorList");
+									 	for (Sensor e : mySensorList) {
+									 		out.println("<Option Value='" + e.getId() + "'> "+
+											e.getStation().getArea().getLabel() + " > " + e.getStation().getLabel() + " > " + e.getLabel()
+											+"</Option>");
 										}	
 									%>
 								</select>
@@ -72,14 +72,11 @@
    			</div>
 		</div>
 		<script type="text/javascript">
-		
-		function ajaxPost(){
-			var sonde = document.getElementById("sonde").value;
-			var dateTime = $("#date").val();
-			var temperature = parseFloat($("#temperature").val());
-
-			if ((temperature === '') || (isNaN(temperature))  || (dateTime ==='') || (dateTime === null))
-				{
+			function ajaxPost(){
+				var sonde = document.getElementById("sonde").value;
+				var dateTime = $("#date").val();
+				var temperature = parseFloat($("#temperature").val());
+				if ((temperature === '') || (isNaN(temperature))  || (dateTime ==='') || (dateTime === null)){
 					$('#missingFields').toggleClass('hide');
 				 	setTimeout(function(){
 				 		  $('#missingFields').toggleClass('hide');
@@ -91,24 +88,21 @@
 						dateTime : dateTime
 					}); 
 				 	$('#insertSucess').toggleClass('hide');
-				/* 	$('#temperature').val('');
+				 	$('#temperature').val('');
 					$("#date").val('');
-					$("#sonde").val('1'); */
+					$("#sonde").val('1'); 
 				 	setTimeout(function(){
 				 		  $('#insertSucess').toggleClass('hide');
 					}, 2000);
 				}
-		}
-		
-		function isNumberKey(evt)
-		{
-		   var charCode = (evt.which) ? evt.which : evt.keyCode;
-		   if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
-		      return false;
-		
-		   return true;
-		}
-		
+			}
+			
+			function isNumberKey(evt){
+			   var charCode = (evt.which) ? evt.which : evt.keyCode;
+			   if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+			      return false;
+			   return true;
+			}
 		</script>
 	</body>
 </html>
