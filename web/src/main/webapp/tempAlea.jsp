@@ -62,7 +62,7 @@
 								</select>
 							</div>
 						</div>
-						<div class="btn-group col-md-2 col-md-offset-10" role="group" >
+						<div class="btn-group col-md-3 col-md-offset-10" role="group" >
 							<input type="button" value="Start" onClick="start();" class="btn btn-success"/>
 							<input type="button" value="stop" onClick="stop();" class="btn btn-danger"/>
 						</div>
