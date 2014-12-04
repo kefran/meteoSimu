@@ -25,11 +25,11 @@ public class PostTempAlea extends HttpServlet {
 
 		Integer sensor = Integer.parseInt(request.getParameter("sonde"));
 		Float temperature = Float.parseFloat(request.getParameter("temperature"));
-			Date date = new Date(); 
-
+		Date date = new Date(); 
+		
 		try{
 			
-			SimulatorService ss = new SimulatorService();
+			SimulatorService ss = SimulatorService.getInstance();
 			ss.setTemperature(sensor, temperature, date);
 		}
 		catch(Exception e){

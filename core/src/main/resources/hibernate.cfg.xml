@@ -7,7 +7,7 @@
 			com.mysql.jdbc.Driver
 		</property>
 		<property name="connection.url">
-			jdbc:mysql://192.168.0.2:3306/lp76
+			jdbc:mysql://localhost:3306/lp76
 		</property>
 		<property name="connection.username">lp76</property>
 		<property name="connection.password">lp76</property>
@@ -21,7 +21,7 @@
 		<property name="show_sql">true</property>
 		<property name="format_sql">true</property>
 		<!-- Drop and re-create the database schema on startup -->
-		<property name="hbm2ddl.auto">validate</property>
+		<property name="hbm2ddl.auto">update</property>
 		<!-- Object Mapping files -->
 
 		<mapping resource="fr/utbm/core/entity/Area.hbm.xml"/>

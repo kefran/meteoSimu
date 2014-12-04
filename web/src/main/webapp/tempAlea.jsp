@@ -55,7 +55,7 @@
 								<label for="interval" class="col-sm-3" control-label">Intervale</label>
 								<select id="interval" name="interval" size="1">
 								<!-- 	<option  value="100">0,1 Seconde /!\</option> 
-									<option value="500">0,5 Seconde</option> -->
+									<option value="500">0,5 Seconde /!\</option> Crash Test -->
 									<option value="1000">1 Seconde</option>
 									<option value="2000">2 Seconde</option>
 									<option value="5000">5 Seconde</option>

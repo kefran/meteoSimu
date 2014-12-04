@@ -32,7 +32,7 @@ public class PostTempUni extends HttpServlet {
 			TimeZone tz = TimeZone.getTimeZone("UTC");
 			sdf.setTimeZone(tz);
 			Date date = sdf.parse(_dateTemp);
-			SimulatorService ss = new SimulatorService();
+			SimulatorService ss =  SimulatorService.getInstance();
 			ss.setTemperature(sensor, temperature, date);
 		}
 		catch(Exception e){
