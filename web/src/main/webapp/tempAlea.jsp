@@ -54,8 +54,8 @@
 							<div class="form-group">
 								<label for="interval" class="col-sm-3" control-label">Intervale</label>
 								<select id="interval" name="interval" size="1">
-									<option  value="100">0,1 Seconde /!\</option>
-									<option value="500">0,5 Seconde</option>
+								<!-- 	<option  value="100">0,1 Seconde /!\</option> 
+									<option value="500">0,5 Seconde /!\</option> Crash Test -->
 									<option value="1000">1 Seconde</option>
 									<option value="2000">2 Seconde</option>
 									<option value="5000">5 Seconde</option>
@@ -115,13 +115,13 @@
 	
 		function generate() {
 			var today = new Date();
-			var date = today.toLocaleString()
+			var date = today.toISOString()
 			var tempMax = parseFloat(document.getElementById("temperatureMax").value);
 			var tempMin = parseFloat(document.getElementById("temperatureMin").value);
-			var temperature = ((Math.random() * tempMax) + tempMin).toFixed(1);
+			var temperature =  (-tempMin +((Math.random() * (tempMax - tempMin +1)  + tempMin))+tempMin).toFixed(1);
 			$.post("http://localhost:8080/web/PostTempAlea", {
 				sonde : sonde,
-				temperature : temperature
+				temperature : temperature,
 			});
 			addResults(date,temperature,$("#sonde option[value='"+sonde+"']").text());
 			nbGenerated+=1;
@@ -138,6 +138,8 @@
 			cellSonde.innerHTML = sonde;
 			
 			pNbGenerated.innerHTML = nbGenerated;
+			
+			if(nbGenerated>10)results.deleteRow(11);
 		}
 		
 	</script>

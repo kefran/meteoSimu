@@ -21,7 +21,7 @@ public class GetTempAlea extends HttpServlet {
 		response.setContentType("text/html");
 
 		// Récupération de la liste des sondes pour la rediriger sur l'affichage
-		SimulatorService mySimulatorService = new SimulatorService();
+		SimulatorService mySimulatorService = SimulatorService.getInstance();
 		List<Sensor> myListSensor = mySimulatorService.getSensorList();
 		
 	    request.setAttribute("sensorList", myListSensor);

@@ -27,8 +27,7 @@ import fr.utbm.core.entity.Temperature;
  */
 public class TempsLogger {
 
-	private HttpClient hClient;
-	private PostMethod hMeth;
+
 	
 	private String url;
 	
@@ -39,14 +38,10 @@ public class TempsLogger {
 	public TempsLogger() {
 		
 		url =new String("http://localhost:8080/concentrator/collectData");//default concentrator
-		
-		hClient = new HttpClient();
-
-		hMeth = new PostMethod(url); 
-
+			
 		mapper = new ObjectMapper();
 		cfg = mapper.getSerializationConfig();
-	
+		
 		mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
 	}
@@ -54,6 +49,8 @@ public class TempsLogger {
 	//
 	public boolean logTemperature(Integer sensorId, Float temperature, Date date) {
 
+		 HttpClient hClient = new HttpClient();
+		 PostMethod hMeth = new PostMethod(url);
 		TemperatureDto tdto = new TemperatureDto(sensorId,temperature,date);
 
 		try {
