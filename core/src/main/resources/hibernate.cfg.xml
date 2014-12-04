@@ -7,7 +7,7 @@
 			com.mysql.jdbc.Driver
 		</property>
 		<property name="connection.url">
-			jdbc:mysql://localhost:3306/lp76
+			jdbc:mysql://192.168.0.2:3306/lp76
 		</property>
 		<property name="connection.username">lp76</property>
 		<property name="connection.password">lp76</property>

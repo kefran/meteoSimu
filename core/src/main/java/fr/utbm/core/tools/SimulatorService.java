@@ -1,5 +1,6 @@
 package fr.utbm.core.tools;
 
+import java.util.Date;
 import java.util.List;
 
 import fr.utbm.core.entity.Area;
@@ -19,11 +20,22 @@ public class SimulatorService {
 	private SensorDao sensorDao;
 	private StationDao stationDao;
 	private AreaDao areaDao;
+	private TempsLogger tempsLogger;
 
+	private static SimulatorService instance;
+	
+	public static SimulatorService getInstance(){
+		if(instance==null)
+			instance= new SimulatorService();
+		
+		return instance;
+	}
+	
 	public SimulatorService() {
 		sensorDao = DaoFactory.getSensorDao();
 		stationDao = DaoFactory.getStationDao();
 		areaDao = DaoFactory.getAreaDao();
+		tempsLogger = new TempsLogger();
 	}
 	
 	public List<Sensor> getSensorList(){
@@ -47,7 +59,9 @@ public class SimulatorService {
 	}
 	
 	
-	
+	public boolean setTemperature(Integer sensorId, Float temperature, Date date){
+		return tempsLogger.logTemperature(sensorId,temperature,date);
+	}
 	
 
 	

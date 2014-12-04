@@ -38,7 +38,7 @@ public class TempsLogger {
 
 	public TempsLogger() {
 		
-		url =new String("http://localhost:8080/concentrator/collectData");//default concentrator
+		url =new String("http://192.168.0.2:8080/concentrator/collectData");//default concentrator
 		
 		hClient = new HttpClient();
 
@@ -46,6 +46,7 @@ public class TempsLogger {
 
 		mapper = new ObjectMapper();
 		cfg = mapper.getSerializationConfig();
+		
 	
 		mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 

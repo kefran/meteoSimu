@@ -4,10 +4,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import fr.utbm.core.tools.SimulatorService;
 import fr.utbm.core.tools.TempsLogger;
 
 /*
@@ -25,9 +29,11 @@ public class PostTempUni extends HttpServlet {
 		
 		try{
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
+			TimeZone tz = TimeZone.getTimeZone("UTC");
+			sdf.setTimeZone(tz);
 			Date date = sdf.parse(_dateTemp);
-			TempsLogger tl = new TempsLogger();
-			tl.logTemperature(sensor, temperature, date);
+			SimulatorService ss = new SimulatorService();
+			ss.setTemperature(sensor, temperature, date);
 		}
 		catch(Exception e){
 			e.printStackTrace();
