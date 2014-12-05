@@ -1,26 +1,16 @@
 package fr.utbm.core.tools;
 
 import java.io.InputStream;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
-import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpMethod;
-import org.apache.commons.httpclient.NameValuePair;
+import org.apache.commons.httpclient.MultiThreadedHttpConnectionManager;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.StringRequestEntity;
-import org.apache.commons.io.IOUtils;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationConfig;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize.Inclusion;
-
-import fr.utbm.core.entity.Temperature;
 
 /*
  *  send the temperature to the concentrator
@@ -28,30 +18,30 @@ import fr.utbm.core.entity.Temperature;
 public class TempsLogger {
 
 
+	private MultiThreadedHttpConnectionManager coMan;
 	
 	private String url;
 	
 	private TimeZone tz;
 	private ObjectMapper mapper;
 	private SerializationConfig cfg;
-
+	private HttpClient hClient;
 	public TempsLogger() {
 		
 		url =new String("http://localhost:8080/concentrator/collectData");//default concentrator
 			
+		coMan = new MultiThreadedHttpConnectionManager();
 		mapper = new ObjectMapper();
-		cfg = mapper.getSerializationConfig();
-		
-		mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-
+		hClient = new HttpClient(coMan);
 	}
 
-	//
+	/*
+	 * 
+	 */
 	public boolean logTemperature(Integer sensorId, Float temperature, Date date) {
 
-		 HttpClient hClient = new HttpClient();
-		 PostMethod hMeth = new PostMethod(url);
-		TemperatureDto tdto = new TemperatureDto(sensorId,temperature,date);
+		PostMethod hMeth = new PostMethod(url);
+		TemperatureDto tdto = new TemperatureDto(sensorId,temperature,date);//Creation du DTO
 
 		try {
 
@@ -59,7 +49,7 @@ public class TempsLogger {
 					mapper.writeValueAsString(tdto), "application/json",
 					"UTF-8");
 			
-			System.out.println("Sended Data : "+mapper.writeValueAsString(tdto));
+			System.out.println("Sent Data : "+mapper.writeValueAsString(tdto));
 			
 			hMeth.setRequestEntity(entity);
 
@@ -75,6 +65,10 @@ public class TempsLogger {
 
 			e.printStackTrace();
 			return false;
+			
+		}finally{
+			
+			hMeth.releaseConnection();
 		}
 		return true;
 	}

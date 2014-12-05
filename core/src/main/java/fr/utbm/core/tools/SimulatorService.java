@@ -60,8 +60,18 @@ public class SimulatorService {
 	
 	
 	public boolean setTemperature(Integer sensorId, Float temperature, Date date){
+		
+		//Contrôle des valeurs
+		if(((float)(-273.15)<temperature) && date !=null && date!=null )
+			return false;
+		
+
 		return tempsLogger.logTemperature(sensorId,temperature,date);
 	}
+	
+	public void setUrl(String url){
+		tempsLogger.setUrl(url);
+	};
 	
 
 	

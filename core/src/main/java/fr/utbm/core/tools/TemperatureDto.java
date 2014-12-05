@@ -27,7 +27,7 @@ public class TemperatureDto {
 	/**
 	 * La date du relevé.
 	 */
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ssZ", timezone="UTC+1")
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ssZ", timezone="UTC")
 	protected Date date;
  
 	/**
