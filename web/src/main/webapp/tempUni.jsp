@@ -82,7 +82,7 @@
 				 		  $('#missingFields').toggleClass('hide');
 				 	}, 2000);
 				}else{
-					$.post("http://localhost:8080/web/PostTempUni", {
+					$.post("http://localhost:8080/simulator/PostTempUni", {
 						sonde : sonde,
 						temperature : temperature,
 						dateTime : dateTime

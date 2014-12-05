@@ -4,10 +4,11 @@
 
 <html>
     <head>
+    	<meta http-equiv="refresh" content="0; URL=GetTempUni">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Index Simulateur</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        Vous allez être rediriger vers le simulateur de température.
     </body>
 </html>

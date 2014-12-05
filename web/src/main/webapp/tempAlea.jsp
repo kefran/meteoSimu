@@ -119,7 +119,7 @@
 			var tempMax = parseFloat(document.getElementById("temperatureMax").value);
 			var tempMin = parseFloat(document.getElementById("temperatureMin").value);
 			var temperature =  (-tempMin +((Math.random() * (tempMax - tempMin +1)  + tempMin))+tempMin).toFixed(1);
-			$.post("http://localhost:8080/web/PostTempAlea", {
+			$.post("http://localhost:8080/simulator/PostTempAlea", {
 				sonde : sonde,
 				temperature : temperature,
 			});
